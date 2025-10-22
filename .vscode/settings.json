@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "C:/Users/31120/Desktop/machine-vaisual/model/segment-anything-main"
+    ]
+}
