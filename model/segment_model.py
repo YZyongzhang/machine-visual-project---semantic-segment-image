@@ -1,7 +1,7 @@
 from model.cnn_block import DoubleConv
 import torch
 import torch.nn as nn
-class UNet(nn.Module):
+class segment(nn.Module):
     def __init__(self, num_classes , input_dim , hidden_dim):
         super().__init__()
         self.down1 = DoubleConv(3, 64)

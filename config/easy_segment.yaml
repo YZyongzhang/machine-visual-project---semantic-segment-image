@@ -3,6 +3,12 @@ Dataset:
   SPLIT: "v1"
   NAME: "easy"
 
+GEN_DATASET:
+  OPEN: true
+  CATRAW_PATH: "data/web_img_data/train/cat"
+  DOGRAW_PATH: "data/web_img_data/train/dog"
+  TO_PATH: "data/img_out_from_segment_groundtruth"
+
 MODEL:
   NUM_CLASS: 1
   INPUT_DIM: 3
@@ -10,7 +16,9 @@ MODEL:
 
 TRAIN:
   NAME: "segment"
+  PATH: "data/web_img_data"
   LR: 0.0001
   batch_size: 64
   NUM_EPOCH: 1000
+
   

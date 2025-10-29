@@ -1,0 +1,1 @@
+from config.easy_segment_config import segment_config as config
