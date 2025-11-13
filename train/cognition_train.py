@@ -2,7 +2,8 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from tqdm import tqdm
-
+from torch.utils.tensorboard import SummaryWriter
+writer = SummaryWriter(log_dir='runs/exp4')
 class Trainer:
     def __init__(self, model, train_loader,  val_loader,   config , device=None,):
         self.model = model
@@ -28,7 +29,10 @@ class Trainer:
             print(f"Epoch [{epoch+1}/{self.epochs}] "
                   f"Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.2f}% "
                   f"| Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.2f}%")
-
+            writer.add_scalar('Loss/train', train_loss, epoch)
+            writer.add_scalar('Accuracy/train', train_acc, epoch)
+            writer.add_scalar('Loss/val', val_loss, epoch)
+            writer.add_scalar('Accuracy/val_acc', val_acc, epoch)
             # 保存最优模型
             if self.save_path and val_acc > best_val_acc:
                 torch.save(self.model.state_dict(), self.save_path)

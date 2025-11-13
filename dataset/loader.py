@@ -3,8 +3,9 @@ import numpy as np
 from PIL import Image
 from torchvision import transforms
 import random
+import torch
 class Loader(Dataset):
-    def __init__(self , cat_file , dog_file , config):
+    def __init__(self , cat_file , dog_file):
         super().__init__()
         self.cat_file = cat_file
         self.dog_file = dog_file
@@ -18,13 +19,14 @@ class Loader(Dataset):
     def get_numpy_from_img_dir(self , cat , dog):
         cat_tensor_data = []
         for cat_i in cat:
+            print(cat_i)
             cat_tensor = self.transforms(Image.open(cat_i))
-            cat_tensor_data.append((cat_tensor , 0))
+            cat_tensor_data.append((cat_tensor , torch.tensor(0)))
 
         dog_tensor_data = []
         for dog_i in dog:
             dog_tensor = self.transforms(Image.open(dog_i))
-            dog_tensor_data.append((dog_tensor , 1))
+            dog_tensor_data.append((dog_tensor , torch.tensor(1)))
         
         total_data = []
         total_data.extend(cat_tensor_data)
